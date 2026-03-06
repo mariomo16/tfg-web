@@ -1,8 +1,15 @@
 <table>
-  @if (apiResponse) {
-    <tr>{{ apiResponse.api }}</tr>
-    <tr>{{ apiResponse.version }}</tr>
-    <tr>{{ apiResponse.status }}</tr>
+  @if (serverStatus(); as status) {
+    <tr>
+      <td>
+        {{ status.status }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ status.timestamp }}
+      </td>
+    </tr>
   }
 </table>
 

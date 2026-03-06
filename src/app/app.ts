@@ -1,7 +1,7 @@
 import { Component, signal } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import type { ApiInterface } from "./models/apiInterface";
-import { Hola } from "./services/apiTest";
+import type { ServerStatusResponse } from "./core/models/status.interface";
+import { ApiService } from "./core/services/api.service";
 
 @Component({
 	selector: "app-root",
@@ -11,17 +11,11 @@ import { Hola } from "./services/apiTest";
 })
 export class App {
 	protected readonly title = signal("tfg-web");
+	serverStatus = signal<ServerStatusResponse | undefined>(undefined);
 
-  apiResponse!: ApiInterface;
-
-	constructor(private hola: Hola) {
-		this.getApi();
-	}
-
-  getApi() {
-      this.hola.getApi().subscribe((res) => {
-			this.apiResponse = res;
-      console.log(this.apiResponse);
+	constructor(private apiService: ApiService) {
+		this.apiService.getServerStatus().subscribe((res) => {
+			this.serverStatus.set(res);
 		});
-  }
+	}
 }
