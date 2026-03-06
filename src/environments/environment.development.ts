@@ -1,4 +1,9 @@
+const BASE_URL = 'http://localhost:8000';
+
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8000/api',
-};
+  api: {
+    baseUrl: BASE_URL,
+    apiUrl: `${BASE_URL}/api`,
+  }
+} as const;
