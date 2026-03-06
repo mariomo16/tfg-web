@@ -1,6 +1,7 @@
 {
 	"name": "tfg-web",
-	"version": "0.0.0",
+	"version": "0.1.0",
+	"author": "Mario Ortega",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",

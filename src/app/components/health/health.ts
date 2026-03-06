@@ -15,12 +15,13 @@ import { HealthService } from "../../core/services/health.service";
 export class Health {
 	private readonly healthService = inject(HealthService);
 	private readonly healthResult = toSignal(this.healthService.checkStatus());
-	public readonly statusConfig = computed(() => {
+	readonly statusConfig = computed(() => {
 		const result = this.healthResult();
 
 		if (!result)
 			return {
-				dot: "bg-gray-400",
+				dot: "bg-amber-400",
+				borderGlow: "bg-amber-400",
 				animation: "animate-pulse",
 				title: "Comprobando estado...",
 				message: "Esperando respuesta del servidor.",
@@ -28,16 +29,18 @@ export class Health {
 
 		return result.status === "up"
 			? {
-					dot: "bg-green-400",
-					animation: "animate-ping",
-					title: "Aplicación activa",
-					message: `Solicitud HTTP recibida. Respuesta generada en ${result.time}ms.`,
+					dot: "bg-emerald-500",
+					borderGlow: "bg-emerald-500",
+					animation: "animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]",
+					title: "Sistema en línea",
+					message: `Tiempo de respuesta: ${result.time}ms`,
 				}
 			: {
-					dot: "bg-red-600",
-					animation: "animate-ping",
-					title: "Aplicación inactiva",
-					message: "El servidor no responde o ha devuelto un error.",
+					dot: "bg-rose-500",
+					borderGlow: "bg-rose-500",
+					animation: "animate-pulse",
+					title: "Sistema no disponible",
+					message: "No se ha podido establecer conexión con la API.",
 				};
 	});
 }
