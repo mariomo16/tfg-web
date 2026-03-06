@@ -1,4 +1,4 @@
 export interface HealthCheckResult {
-  status: 'up' | 'down';
-  time: number;
+	status: "up" | "down";
+	time: number;
 }
