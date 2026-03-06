@@ -22,22 +22,22 @@ export class Health {
 			return {
 				dot: "bg-gray-400",
 				animation: "animate-pulse",
-				title: "Checking status...",
-				message: "Waiting for server response.",
+				title: "Comprobando estado...",
+				message: "Esperando respuesta del servidor.",
 			};
 
 		return result.status === "up"
 			? {
 					dot: "bg-green-400",
 					animation: "animate-ping",
-					title: "Application up",
-					message: `HTTP request received. Response rendered in ${result.time}ms.`,
+					title: "Aplicación activa",
+					message: `Solicitud HTTP recibida. Respuesta generada en ${result.time}ms.`,
 				}
 			: {
 					dot: "bg-red-600",
 					animation: "animate-ping",
-					title: "Application down",
-					message: "Server is unreachable or returned an error.",
+					title: "Aplicación inactiva",
+					message: "El servidor no responde o ha devuelto un error.",
 				};
 	});
 }
