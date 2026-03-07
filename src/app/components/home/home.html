@@ -67,9 +67,15 @@
     </div>
 
     <!-- Componentes card segun las zonas -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      @for (zone of zones; track zone.id) {
-        <app-zone-card [zone]="zone" />
+    <div class="min-h-[420px] flex items-center justify-center">
+      @if (zones()) {
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full animate-fade-in-up">
+          @for (zone of zones(); track zone.id) {
+            <app-zone-card [zone]="zone" />
+          }
+        </div>
+      } @else {
+        <span [innerHTML]="loading | safeHtml"></span>
       }
     </div>
   </div>
