@@ -5,15 +5,28 @@ export interface ComputerResponse {
 	name: string;
 	reservations: [];
 	specs: string;
-	status: string;
-	zones: Zone[];
+	status: "available" | "maintenance" | "occupied";
+	zone: Zone;
 	zone_id: number;
 }
 
 export interface Computer {
-	id: number;
-	zones: Zone[];
-	name: string;
-	status: string;
-	specs: string;
+	id: ComputerResponse["id"];
+	zone: ComputerResponse["zone"];
+	name: ComputerResponse["name"];
+	status: ComputerResponse["status"];
+	specs: ComputerResponse["specs"];
+}
+
+export interface CreateComputerDto {
+	name: ComputerResponse["name"];
+	zone_id: ComputerResponse["zone_id"];
+	specs: ComputerResponse["specs"];
+}
+
+export interface UpdateComputerDto {
+	name?: ComputerResponse["name"];
+	zone_id?: ComputerResponse["zone_id"];
+	status?: ComputerResponse["status"];
+	specs?: ComputerResponse["specs"];
 }

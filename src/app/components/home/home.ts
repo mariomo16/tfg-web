@@ -17,7 +17,6 @@ import { ZoneCard } from "../zone-card/zone-card";
 function mapZone(zone: ZoneResponse): Zone {
 	return {
 		...zone,
-		pricePerSlot: zone.price_per_slot,
 		availableComputers: zone.computers.filter(
 			(computer) => computer.status === "available",
 		).length,

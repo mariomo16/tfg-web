@@ -1,4 +1,4 @@
-import type { Computer, ComputerResponse } from "./computer.model";
+import type { ComputerResponse } from "./computer.model";
 
 export interface ZoneResponse {
 	computers: ComputerResponse[];
@@ -10,10 +10,20 @@ export interface ZoneResponse {
 export interface Zone {
 	id: ZoneResponse["id"];
 	name: ZoneResponse["name"];
-	pricePerSlot: ZoneResponse["price_per_slot"];
+	price_per_slot: ZoneResponse["price_per_slot"];
 	availableComputers: number;
 	totalComputers: number;
 	icon: string;
 	accent: string;
-	computers: Computer[];
+	computers: ZoneResponse["computers"];
+}
+
+export interface CreateZoneDto {
+	name: ZoneResponse["name"];
+	price_per_slot: ZoneResponse["price_per_slot"];
+}
+
+export interface UpdateZoneDto {
+	name: ZoneResponse["name"];
+	price_per_slot: ZoneResponse["price_per_slot"];
 }
