@@ -50,6 +50,12 @@ div.glass-card:hover {
 	transform: translateY(-4px);
 }
 
+.glass-card-no-animation {
+	background: rgba(30, 41, 59, 0.6);
+	backdrop-filter: blur(16px);
+	border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
 /* Para cuando se le da a un enlace que te lleva a algo de la propia vista, se desplace suave */
 html {
 	scroll-behavior: smooth;

@@ -8,7 +8,7 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { ZoneAccents } from "../../core/constants/zone.constants";
 import type { Zone, ZoneResponse } from "../../core/models/zone.model";
 import { ZoneService } from "../../core/services/zone.service";
-import { Icons, ZoneIcons } from "../../shared/icons/icons";
+import { LoadingIcon, ZoneIcons } from "../../shared/icons/icons";
 import { SafeHtmlPipe } from "../../shared/pipes/safe-html.pipe";
 import { Footer } from "../layout/footer/footer";
 import { Navbar } from "../layout/navbar/navbar";
@@ -38,5 +38,5 @@ export class Home {
 	private readonly zonesResponse = toSignal(this.zoneService.getAll());
 
 	readonly zones = computed(() => this.zonesResponse()?.map(mapZone));
-	readonly loadingIcon = Icons.load;
+	readonly loadingIcon = LoadingIcon;
 }
