@@ -4,9 +4,9 @@ import { APP } from "../../../core/constants/app.constants";
 
 @Component({
 	selector: "app-footer",
-	templateUrl: "./footer.html",
 	imports: [RouterLink],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	templateUrl: "./footer.html",
 })
 export class Footer {
 	readonly appName = APP.name;

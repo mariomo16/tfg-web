@@ -4,9 +4,9 @@ import { APP } from "../../../core/constants/app.constants";
 
 @Component({
 	selector: "app-navbar",
-	templateUrl: "./navbar.html",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [RouterLink],
+	templateUrl: "./navbar.html",
 })
 export class Navbar {
 	readonly appName = APP.name;

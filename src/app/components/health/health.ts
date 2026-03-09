@@ -42,9 +42,9 @@ const STATUS_CONFIG = {
 
 @Component({
 	selector: "app-health",
-	templateUrl: "./health.html",
 	imports: [RouterLink],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	templateUrl: "./health.html",
 })
 export class Health {
 	private readonly healthService = inject(HealthService);

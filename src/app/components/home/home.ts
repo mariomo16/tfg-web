@@ -29,9 +29,9 @@ function mapZone(zone: ZoneResponse): Zone {
 
 @Component({
 	selector: "app-home",
-	templateUrl: "./home.html",
 	imports: [Navbar, ZoneCard, Footer, SafeHtmlPipe],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	templateUrl: "./home.html",
 })
 export class Home {
 	private readonly zoneService = inject(ZoneService);
