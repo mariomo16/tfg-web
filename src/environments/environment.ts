@@ -1,4 +1,4 @@
 export const environment = {
 	production: true,
-	apiUrl: "http://localhost:8000/api/v1",
+	apiUrl: "https://ortegamario-tfg.vercel.app/api/v1",
 } as const;

@@ -52,6 +52,9 @@
 					"defaultConfiguration": "production"
 				},
 				"serve": {
+					"options": {
+						"allowedHosts": ["avoid-social-route-surgeons.trycloudflare.com"]
+					},
 					"builder": "@angular/build:dev-server",
 					"configurations": {
 						"production": {
