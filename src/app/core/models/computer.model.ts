@@ -6,6 +6,14 @@ export interface ComputerResponse {
 	reservations: [];
 	specs: string;
 	status: string;
-	zone: Zone[];
+	zones: Zone[];
 	zone_id: number;
+}
+
+export interface Computer {
+	id: number;
+	zones: Zone[];
+	name: string;
+	status: string;
+	specs: string;
 }

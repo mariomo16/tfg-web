@@ -3,18 +3,20 @@
     <p class="text-sm text-text-muted flex items-center gap-2">
       <span>{{ appName }}</span>
       <span>·</span>
-      <span>Proyecto TFG</span>
-      <span>·</span>
-      <span>v{{ appVersion }}</span>
+      <span>2026 v{{ appVersion }}</span>
     </p>
     <div class="flex items-center gap-3">
-      <a href="/status" class="text-sm text-text-muted hover:text-text-primary transition-colors">
+      <a
+        routerLink="/status"
+        class="text-sm text-text-muted hover:text-text-primary transition-colors"
+      >
         Estado del sistema
       </a>
       <span class="text-text-muted">·</span>
       <a
         href="https://github.com/mariomo16/tfg-web"
         target="_blank"
+        rel="noopener noreferrer"
         class="text-sm text-text-muted hover:text-text-primary transition-colors"
       >
         GitHub

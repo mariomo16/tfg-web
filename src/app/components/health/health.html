@@ -1,7 +1,8 @@
 <section
   class="relative min-h-screen flex items-center justify-center bg-surface-900 overflow-hidden p-6"
 >
-  <!-- Divs cirulares para "efecto" glow -->
+  @let cfg = statusConfig();
+
   <div
     class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/10 rounded-full blur-3xl animate-zoom-in"
   ></div>
@@ -9,20 +10,15 @@
     class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-violet/10 rounded-full blur-3xl animate-zoom-in"
   ></div>
 
-  @let cfg = statusConfig();
-
   <div class="relative z-10 w-[90%] sm:w-md md:w-lg">
-    <!-- Div principal -->
     <div
       class="relative bg-surface-900 border border-surface-700/60 rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center shadow-2xl backdrop-blur-xl"
     >
-      <!-- Para que este en la esquina superior derecha -->
-      <div class="absolute top-6 right-6 flex items-center justify-center p-2">
-        <!-- Circulito de color indicando -->
+      <div class="absolute top-6 right-6 flex items-center justify-center">
         <div class="relative flex h-3 w-3">
           <span
             class="absolute inline-flex h-full w-full rounded-full opacity-60 transition-colors duration-700"
-            [class]="cfg.animation ? cfg.animation + ' ' + cfg.dot : cfg.dot"
+            [class]="[cfg.dot, cfg.animation ?? cfg.animation]"
           ></span>
           <span
             class="relative inline-flex rounded-full h-3 w-3 shadow-[0_0_8px_rgba(0,0,0,1)] transition-colors duration-700"
@@ -31,7 +27,6 @@
         </div>
       </div>
 
-      <!-- Titulo y mensaje de estado -->
       <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2 mt-2">
         {{ cfg.title }}
       </h2>
@@ -40,33 +35,31 @@
         {{ cfg.message }}
       </p>
 
-      <!-- Boton de volver al inicio -->
-      <div>
-        <a
-          href="/"
-          class="group inline-flex items-center gap-2 text-sm font-medium text-text-muted hover:text-text-primary transition-colors p-4 -m-4"
+      <a
+        routerLink="/"
+        class="group inline-flex items-center gap-2 text-sm font-medium text-text-muted hover:text-text-primary transition-colors p-4 -m-4"
+      >
+        <svg
+          class="w-4 h-4 transition-transform group-hover:-translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <svg
-            class="w-4 h-4 transition-transform group-hover:-translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
-          </svg>
-          <span class="relative">
-            Volver al inicio
-            <span
-              class="absolute left-0 -bottom-1 w-0 h-px bg-text-primary transition-all duration-300 group-hover:w-full"
-            ></span>
-          </span>
-        </a>
-      </div>
+          <title>left-arrow</title>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+        <span class="relative">
+          Volver al inicio
+          <span
+            class="absolute left-0 -bottom-1 w-0 h-px bg-text-primary transition-all duration-300 group-hover:w-full"
+          ></span>
+        </span>
+      </a>
     </div>
   </div>
 </section>

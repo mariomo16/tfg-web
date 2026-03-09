@@ -1,4 +1,4 @@
-import type { ComputerResponse } from "./computer.model";
+import type { Computer, ComputerResponse } from "./computer.model";
 
 export interface ZoneResponse {
 	computers: ComputerResponse[];
@@ -15,4 +15,5 @@ export interface Zone {
 	totalComputers: number;
 	icon: string;
 	accent: string;
+	computers: Computer[];
 }

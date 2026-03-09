@@ -5,42 +5,60 @@ import {
 	inject,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
+import { RouterLink } from "@angular/router";
 import { HealthService } from "../../core/services/health.service";
+
+interface StatusConfig {
+	dot: string;
+	borderGlow: string;
+	animation: string | null;
+	title: string;
+	message: string;
+}
+
+const STATUS_CONFIG = {
+	loading: {
+		dot: "bg-amber-400",
+		borderGlow: "bg-amber-400",
+		animation: null,
+		title: "Comprobando estado...",
+		message: "Probando conexión con el servidor.",
+	},
+	down: {
+		dot: "bg-rose-500",
+		borderGlow: "bg-rose-500",
+		animation: null,
+		title: "API no disponible",
+		message: "El servidor no responde.",
+	},
+	up: {
+		dot: "bg-emerald-500",
+		borderGlow: "bg-emerald-500",
+		animation: "animate-ping",
+		title: "API disponible",
+		message: "",
+	},
+} as const satisfies Record<string, StatusConfig>;
 
 @Component({
 	selector: "app-health",
+	imports: [RouterLink],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: "./health.html",
 })
 export class Health {
 	private readonly healthService = inject(HealthService);
-	private readonly healthResult = toSignal(this.healthService.checkStatus());
+	private readonly healthStatus = toSignal(this.healthService.checkStatus());
+
 	readonly statusConfig = computed(() => {
-		const result = this.healthResult();
+		const result = this.healthStatus();
 
-		if (!result)
-			return {
-				dot: "bg-amber-400",
-				borderGlow: "bg-amber-400",
-				animation: "animate-pulse",
-				title: "Comprobando estado...",
-				message: "Esperando respuesta del servidor.",
-			};
+		if (!result) return STATUS_CONFIG.loading;
+		if (result.status === "down") return STATUS_CONFIG.down;
 
-		return result.status === "up"
-			? {
-					dot: "bg-emerald-500",
-					borderGlow: "bg-emerald-500",
-					animation: "animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]",
-					title: "Sistema en línea",
-					message: `Tiempo de respuesta: ${result.time}ms`,
-				}
-			: {
-					dot: "bg-rose-500",
-					borderGlow: "bg-rose-500",
-					animation: "animate-pulse",
-					title: "Sistema no disponible",
-					message: "No se ha podido establecer conexión con la API.",
-				};
+		return {
+			...STATUS_CONFIG.up,
+			message: `Tiempo de respuesta: ${result.time}ms`,
+		};
 	});
 }
