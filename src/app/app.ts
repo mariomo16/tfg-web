@@ -24,9 +24,7 @@ export class App implements OnInit {
 			html.classList.remove("is-loading");
 
 			// Limpiar el splash del dom despues de la transicion
-			setTimeout(() => {
-				splash?.remove();
-			}, 200);
+			splash?.remove();
 		}, 0);
 	}
 }
