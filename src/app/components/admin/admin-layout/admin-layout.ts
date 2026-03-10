@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { APP } from "../../../core/constants/app.constants";
 import { DashboardIcons } from "../../../shared/icons/icons";
 import { SafeHtmlPipe } from "../../../shared/pipes/safe-html.pipe";
 
@@ -15,6 +16,7 @@ interface Catalog {
 	templateUrl: "./admin-layout.html",
 })
 export class AdminLayout {
+	protected readonly appName = APP.name;
 	protected readonly navClasses: string =
 		"flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-surface-700/50 hover:text-text-primary transition-colors";
 
