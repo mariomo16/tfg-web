@@ -11,8 +11,63 @@
       href="https://fonts.bunny.net/css?family=figtree:300,400,500,600,700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --color-bg: #0b0f19;
+        --color-accent: #60a5fa;
+      }
+
+      html.is-loading body {
+        overflow: hidden;
+      }
+
+      #app-splash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition:
+          opacity 0.5s ease-out,
+          visibility 0.5s;
+      }
+
+      .splash-loader {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        border-top-color: var(--color-accent);
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      app-root {
+        display: block;
+        opacity: 0;
+        transition: opacity 0.6s ease-in;
+      }
+
+      html:not(.is-loading) app-root {
+        opacity: 1;
+      }
+    </style>
   </head>
-  <body>
+  <body class="bg-[#0b0f19] text-[#f1f5f9]">
+    <div id="app-splash">
+      <div class="splash-loader"></div>
+    </div>
     <app-root></app-root>
   </body>
 </html>
