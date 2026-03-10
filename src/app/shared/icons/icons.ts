@@ -57,6 +57,60 @@ const Icons = {
             fill="#EA4335"
           />
         </svg>`,
+	dashboard: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <title>Dashboard</title>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+          />
+        </svg>`,
+	zones: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <title>Zonas</title>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+          />
+        </svg>`,
+	computers: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <title>Ordenadores</title>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          />
+        </svg>`,
+	timeslots: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <title>Franjas horarias</title>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>`,
+	users: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <title>Usuarios</title>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>`,
+	arrowBack: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <title>Volver al sitio</title>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M11 17l-5-5m0 0l5-5m-5 5h12"
+          />
+        </svg>`,
 };
 
 export const ZoneIcons: Record<string, string> = {
@@ -68,6 +122,15 @@ export const ZoneIcons: Record<string, string> = {
 export const SocialIcons = {
 	github: Icons.github,
 	google: Icons.google,
+};
+
+export const DashboardIcons = {
+	dashboard: Icons.dashboard,
+	zones: Icons.zones,
+	computers: Icons.computers,
+	timeslots: Icons.timeslots,
+	users: Icons.users,
+	back: Icons.arrowBack,
 };
 
 export const LoadingIcon = Icons.load;
