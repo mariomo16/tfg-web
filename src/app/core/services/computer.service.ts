@@ -14,6 +14,7 @@ import type {
 export class ComputerService {
 	private readonly http = inject(HttpClient);
 	private readonly computersUrl = `${environment.apiUrl}/computers`;
+	private readonly adminUrl = `${environment.apiUrl}/admin/computers`;
 
 	getAll(): Observable<ComputerResponse[]> {
 		return this.http.get<ComputerResponse[]>(this.computersUrl);
@@ -24,14 +25,14 @@ export class ComputerService {
 	}
 
 	create(data: CreateComputerDto): Observable<ComputerResponse> {
-		return this.http.post<ComputerResponse>(this.computersUrl, data);
+		return this.http.post<ComputerResponse>(this.adminUrl, data);
 	}
 
 	update(id: number, data: UpdateComputerDto): Observable<ComputerResponse> {
-		return this.http.put<ComputerResponse>(`${this.computersUrl}/${id}`, data);
+		return this.http.put<ComputerResponse>(`${this.adminUrl}/${id}`, data);
 	}
 
 	delete(id: number): Observable<void> {
-		return this.http.delete<void>(`${this.computersUrl}/${id}`);
+		return this.http.delete<void>(`${this.adminUrl}/${id}`);
 	}
 }

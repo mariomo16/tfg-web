@@ -5,14 +5,14 @@ import {
 	inject,
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { ZoneAccents } from "../../core/constants/zone.constants";
-import type { Zone, ZoneResponse } from "../../core/models/zone.model";
-import { ZoneService } from "../../core/services/zone.service";
-import { LoadingIcon, ZoneIcons } from "../../shared/icons/icons";
-import { SafeHtmlPipe } from "../../shared/pipes/safe-html.pipe";
-import { Footer } from "../layout/footer/footer";
-import { Navbar } from "../layout/navbar/navbar";
-import { ZoneCard } from "../zone-card/zone-card";
+import { ZoneAccents } from "../../../core/constants/zone.constants";
+import type { Zone, ZoneResponse } from "../../../core/models/zone.model";
+import { ZoneService } from "../../../core/services/zone.service";
+import { PacmanLoadingIcon, ZoneIcons } from "../../../shared/icons/icons";
+import { SafeHtmlPipe } from "../../../shared/pipes/safe-html.pipe";
+import { Footer } from "../../layout/footer/footer";
+import { Navbar } from "../../layout/navbar/navbar";
+import { ZoneCard } from "../../zone-card/zone-card";
 
 function mapZone(zone: ZoneResponse): Zone {
 	return {
@@ -37,5 +37,5 @@ export class Home {
 	private readonly zonesResponse = toSignal(this.zoneService.getAll());
 
 	readonly zones = computed(() => this.zonesResponse()?.map(mapZone));
-	readonly loadingIcon = LoadingIcon;
+	readonly loadingIcon = PacmanLoadingIcon;
 }

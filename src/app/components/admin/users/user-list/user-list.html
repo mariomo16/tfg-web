@@ -1,0 +1,135 @@
+<div class="p-8">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-text-primary">Usuarios</h1>
+      <p class="mt-1 text-sm text-text-secondary">Gestiona los usuarios registrados</p>
+    </div>
+    <a
+      routerLink="/admin/users/new"
+      class="px-4 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
+    >
+      + Nuevo usuario
+    </a>
+  </div>
+
+  <div class="glass-card rounded-xl overflow-hidden">
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-surface-600">
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            ID
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Nombre
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Email
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Reservas
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Registro
+          </th>
+          <th
+            class="text-right px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-surface-700">
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">1</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">Mario Ortega</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">mario@email.com</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">12</td>
+          <td class="px-6 py-4 text-sm text-text-muted">01/03/2026</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/users/1/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">2</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">Laura García</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">laura@email.com</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">8</td>
+          <td class="px-6 py-4 text-sm text-text-muted">05/03/2026</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/users/2/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">3</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">Carlos Ruiz</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">carlos@email.com</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">3</td>
+          <td class="px-6 py-4 text-sm text-text-muted">08/03/2026</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/users/3/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">4</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">Ana López</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">ana@email.com</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">0</td>
+          <td class="px-6 py-4 text-sm text-text-muted">10/03/2026</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/users/4/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

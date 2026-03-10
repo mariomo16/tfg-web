@@ -16,6 +16,7 @@ export interface Computer {
 	name: ComputerResponse["name"];
 	status: ComputerResponse["status"];
 	specs: ComputerResponse["specs"];
+	statusAccent: string;
 }
 
 export interface CreateComputerDto {

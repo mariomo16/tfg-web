@@ -1,0 +1,128 @@
+<div class="p-8">
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold text-text-primary">Dashboard</h1>
+    <p class="mt-1 text-sm text-text-secondary">Resumen general del sistema</p>
+  </div>
+
+  <!-- Stats grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Zonas -->
+    <div class="glass-card rounded-xl p-5">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-text-secondary">Zonas</span>
+        <div class="w-9 h-9 rounded-lg bg-accent-blue/10 flex items-center justify-center">
+          <span [innerHTML]="dashboardIcons.zones | safeHtml" class="text-accent-blue"></span>
+        </div>
+      </div>
+      @if (zoneResponse()) {
+        <p class="text-3xl font-bold text-text-primary">{{ totalZones() }}</p>
+        <p class="text-xs text-text-muted mt-1">
+          @for (zone of zoneResponse(); track zone.id) {
+            {{ zone.name }}
+            @if (!$last) {
+              ·
+            }
+          }
+        </p>
+      } @else {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
+      }
+    </div>
+
+    <!-- Ordenadores -->
+    <div class="glass-card rounded-xl p-5">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-text-secondary">Ordenadores</span>
+        <div class="w-9 h-9 rounded-lg bg-accent-violet/10 flex items-center justify-center">
+          <span [innerHTML]="dashboardIcons.computers | safeHtml" class="text-accent-violet"></span>
+        </div>
+      </div>
+      @if (totalComputers()) {
+        <p class="text-3xl font-bold text-text-primary">{{ totalComputers() }}</p>
+        <div class="flex items-center gap-2 mt-1">
+          <span class="inline-flex items-center gap-1 text-xs text-accent-emerald">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+            {{ availableComputers() }} disponibles
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs text-accent-amber">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-amber"></span>
+            {{ inMaintenanceComputers() }} mantenimiento
+          </span>
+        </div>
+      } @else {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
+      }
+    </div>
+
+    <!-- Franjas horarias -->
+    <div class="glass-card rounded-xl p-5">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-text-secondary">Franjas horarias</span>
+        <div class="w-9 h-9 rounded-lg bg-accent-emerald/10 flex items-center justify-center">
+          <span
+            [innerHTML]="dashboardIcons.timeslots | safeHtml"
+            class="text-accent-emerald"
+          ></span>
+        </div>
+      </div>
+      <p class="text-3xl font-bold text-text-primary">6</p>
+      <p class="text-xs text-text-muted mt-1">De 09:00 a 21:00</p>
+    </div>
+
+    <!-- Usuarios -->
+    <div class="glass-card rounded-xl p-5">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-text-secondary">Usuarios</span>
+        <div class="w-9 h-9 rounded-lg bg-accent-amber/10 flex items-center justify-center">
+          <span [innerHTML]="dashboardIcons.users | safeHtml" class="text-accent-amber"></span>
+        </div>
+      </div>
+      <p class="text-3xl font-bold text-text-primary">48</p>
+      <p class="text-xs text-text-muted mt-1">5 nuevos esta semana</p>
+    </div>
+  </div>
+
+  <!-- Quick access -->
+  <div>
+    <h2 class="text-lg font-semibold text-text-primary mb-4">Accesos rápidos</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <a
+        routerLink="/admin/zones"
+        class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
+      >
+        <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center">
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-blue"></span>
+        </div>
+        <span class="text-sm font-medium text-text-secondary">Nueva zona</span>
+      </a>
+      <a
+        routerLink="/admin/computers"
+        class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
+      >
+        <div class="w-10 h-10 rounded-lg bg-accent-violet/10 flex items-center justify-center">
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-violet"></span>
+        </div>
+        <span class="text-sm font-medium text-text-secondary">Nuevo ordenador</span>
+      </a>
+      <a
+        routerLink="/admin/timeslots"
+        class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
+      >
+        <div class="w-10 h-10 rounded-lg bg-accent-emerald/10 flex items-center justify-center">
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-emerald"></span>
+        </div>
+        <span class="text-sm font-medium text-text-secondary">Nueva franja</span>
+      </a>
+      <a
+        routerLink="/admin/users"
+        class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
+      >
+        <div class="w-10 h-10 rounded-lg bg-accent-amber/10 flex items-center justify-center">
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-amber"></span>
+        </div>
+        <span class="text-sm font-medium text-text-secondary">Nuevo usuario</span>
+      </a>
+    </div>
+  </div>
+</div>
