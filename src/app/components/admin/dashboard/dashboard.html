@@ -12,24 +12,11 @@
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Zonas</span>
         <div class="w-9 h-9 rounded-lg bg-accent-blue/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-blue"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Zonas</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-            />
-          </svg>
+          <span [innerHTML]="dashboardIcons.zones | safeHtml" class="text-accent-blue"></span>
         </div>
       </div>
       <p class="text-3xl font-bold text-text-primary">3</p>
-      <p class="text-xs text-text-muted mt-1">Gaming · Streaming · Trabajo</p>
+      <p class="text-xs text-text-muted mt-1">Gaming · Torneo · VIP</p>
     </div>
 
     <!-- Ordenadores -->
@@ -37,31 +24,22 @@
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Ordenadores</span>
         <div class="w-9 h-9 rounded-lg bg-accent-violet/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-violet"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Ordenadores</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            />
-          </svg>
+          <span [innerHTML]="dashboardIcons.computers | safeHtml" class="text-accent-violet"></span>
         </div>
       </div>
-      <p class="text-3xl font-bold text-text-primary">12</p>
-      <div class="flex items-center gap-2 mt-1">
-        <span class="inline-flex items-center gap-1 text-xs text-accent-emerald">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span> 9 disponibles
-        </span>
-        <span class="inline-flex items-center gap-1 text-xs text-accent-amber">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent-amber"></span> 3 mantenimiento
-        </span>
-      </div>
+      @if (totalComputers()) {
+        <p class="text-3xl font-bold text-text-primary">{{ totalComputers() }}</p>
+        <div class="flex items-center gap-2 mt-1">
+          <span class="inline-flex items-center gap-1 text-xs text-accent-emerald">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+            {{ availableComputers() }} disponibles
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs text-accent-amber">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-amber"></span>
+            {{ inMaintenanceComputers() }} mantenimiento
+          </span>
+        </div>
+      }
     </div>
 
     <!-- Franjas horarias -->
@@ -69,20 +47,10 @@
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Franjas horarias</span>
         <div class="w-9 h-9 rounded-lg bg-accent-emerald/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-emerald"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Franjas</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+          <span
+            [innerHTML]="dashboardIcons.timeslots | safeHtml"
+            class="text-accent-emerald"
+          ></span>
         </div>
       </div>
       <p class="text-3xl font-bold text-text-primary">6</p>
@@ -94,20 +62,7 @@
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Usuarios</span>
         <div class="w-9 h-9 rounded-lg bg-accent-amber/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-amber"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Usuarios</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
+          <span [innerHTML]="dashboardIcons.users | safeHtml" class="text-accent-amber"></span>
         </div>
       </div>
       <p class="text-3xl font-bold text-text-primary">48</p>
@@ -124,20 +79,7 @@
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-blue"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Nueva zona</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-blue"></span>
         </div>
         <span class="text-sm font-medium text-text-secondary">Nueva zona</span>
       </a>
@@ -146,20 +88,7 @@
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-violet/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-violet"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Nuevo ordenador</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-violet"></span>
         </div>
         <span class="text-sm font-medium text-text-secondary">Nuevo ordenador</span>
       </a>
@@ -168,20 +97,7 @@
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-emerald/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-emerald"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Nueva franja</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-emerald"></span>
         </div>
         <span class="text-sm font-medium text-text-secondary">Nueva franja</span>
       </a>
@@ -190,20 +106,7 @@
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-amber/10 flex items-center justify-center">
-          <svg
-            class="w-5 h-5 text-accent-amber"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <title>Nuevo usuario</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
+          <span [innerHTML]="dashboardIcons.plus | safeHtml" class="text-accent-amber"></span>
         </div>
         <span class="text-sm font-medium text-text-secondary">Nuevo usuario</span>
       </a>
