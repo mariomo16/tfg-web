@@ -14,7 +14,7 @@ export interface Computer {
 	id: ComputerResponse["id"];
 	zone: ComputerResponse["zone"];
 	name: ComputerResponse["name"];
-	status: ComputerResponse["status"];
+	status: "Disponible" | "Ocupado" | "En mantenimiento";
 	specs: ComputerResponse["specs"];
 	statusAccent: string;
 }

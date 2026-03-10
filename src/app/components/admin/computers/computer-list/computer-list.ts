@@ -16,9 +16,16 @@ import { ComputerService } from "../../../../core/services/computer.service";
 function mapComputer(computer: ComputerResponse): Computer {
 	return {
 		...computer,
+		status: status[computer.status] as Computer["status"],
 		statusAccent: ComputerStatusAccents[computer.status],
 	};
 }
+
+const status: Record<string, string> = {
+	available: "Disponible",
+	occupied: "Ocupado",
+	maintenance: "En mantenimiento",
+};
 
 @Component({
 	selector: "app-computer-list",
