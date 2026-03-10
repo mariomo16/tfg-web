@@ -15,8 +15,19 @@
           <span [innerHTML]="dashboardIcons.zones | safeHtml" class="text-accent-blue"></span>
         </div>
       </div>
-      <p class="text-3xl font-bold text-text-primary">3</p>
-      <p class="text-xs text-text-muted mt-1">Gaming · Torneo · VIP</p>
+      @if (zoneResponse()) {
+        <p class="text-3xl font-bold text-text-primary">{{ totalZones() }}</p>
+        <p class="text-xs text-text-muted mt-1">
+          @for (zone of zoneResponse(); track zone.id) {
+            {{ zone.name }}
+            @if (!$last) {
+              ·
+            }
+          }
+        </p>
+      } @else {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
+      }
     </div>
 
     <!-- Ordenadores -->
@@ -39,6 +50,8 @@
             {{ inMaintenanceComputers() }} mantenimiento
           </span>
         </div>
+      } @else {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
       }
     </div>
 

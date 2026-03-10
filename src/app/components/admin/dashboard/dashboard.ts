@@ -2,7 +2,8 @@ import { Component, computed, inject } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { RouterLink } from "@angular/router";
 import { ComputerService } from "../../../core/services/computer.service";
-import { DashboardIcons } from "../../../shared/icons/icons";
+import { ZoneService } from "../../../core/services/zone.service";
+import { DashboardIcons, LoadingIcon } from "../../../shared/icons/icons";
 import { SafeHtmlPipe } from "../../../shared/pipes/safe-html.pipe";
 
 @Component({
@@ -11,16 +12,26 @@ import { SafeHtmlPipe } from "../../../shared/pipes/safe-html.pipe";
 	templateUrl: "./dashboard.html",
 })
 export class Dashboard {
+	private readonly zoneService = inject(ZoneService);
 	private readonly computerService = inject(ComputerService);
-	private readonly computersResponse = toSignal(this.computerService.getAll());
-	readonly totalComputers = computed(() => this.computersResponse()?.length);
-	readonly availableComputers = computed(
+
+	protected readonly zoneResponse = toSignal(this.zoneService.getAll());
+	protected readonly computersResponse = toSignal(
+		this.computerService.getAll(),
+	);
+
+	protected readonly totalZones = computed(() => this.zoneResponse()?.length);
+	protected readonly totalComputers = computed(
+		() => this.computersResponse()?.length,
+	);
+
+	protected readonly availableComputers = computed(
 		() =>
 			this.computersResponse()?.filter(
 				(computer) => computer.status === "available",
 			).length,
 	);
-	readonly inMaintenanceComputers = computed(
+	protected readonly inMaintenanceComputers = computed(
 		() =>
 			this.computersResponse()?.filter(
 				(computer) => computer.status === "maintenance",
@@ -34,4 +45,6 @@ export class Dashboard {
 		users: DashboardIcons.users,
 		plus: DashboardIcons.plus,
 	};
+
+	protected readonly loadingIcon = LoadingIcon;
 }
