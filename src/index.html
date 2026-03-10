@@ -43,16 +43,6 @@
           visibility 0.5s;
       }
 
-      .splash-logo {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 2rem;
-        background: linear-gradient(135deg, #60a5fa, #a78bfa);
-        border-radius: 1.5rem;
-        animation: pulse 2s infinite ease-in-out;
-        box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
-      }
-
       .splash-loader {
         width: 40px;
         height: 40px;
@@ -68,19 +58,6 @@
         }
       }
 
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 0.8;
-        }
-        50% {
-          transform: scale(1.1);
-          opacity: 1;
-        }
-      }
-
-      /* Hide app root until loading is finished */
       app-root {
         display: block;
         opacity: 0;
@@ -94,7 +71,6 @@
   </head>
   <body class="bg-[#0b0f19] text-[#f1f5f9]">
     <div id="app-splash">
-      <div class="splash-logo"></div>
       <div class="splash-loader"></div>
     </div>
     <app-root></app-root>

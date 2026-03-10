@@ -11,20 +11,11 @@ export class App implements OnInit {
 	protected readonly title = signal("tfg-web");
 
 	ngOnInit() {
-		// Timeout que se ejecutara cuando todo este cargado para que no haya FOUC (a la cuarta va la vencida)
-		setTimeout(() => {
-			const splash = document.getElementById("app-splash");
-			const html = document.documentElement;
+		// Para que eliminar el FOUC en producción (a la cuarta va la vencida)
+		const splash = document.getElementById("app-splash");
+		const html = document.documentElement;
 
-			if (splash) {
-				splash.style.opacity = "0";
-				splash.style.visibility = "hidden";
-			}
-
-			html.classList.remove("is-loading");
-
-			// Limpiar el splash del dom despues de la transicion
-			splash?.remove();
-		}, 0);
+		html.classList.remove("is-loading");
+		splash?.remove();
 	}
 }

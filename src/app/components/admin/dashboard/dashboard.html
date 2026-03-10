@@ -8,7 +8,7 @@
   <!-- Stats grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
     <!-- Zonas -->
-    <div class="glass-card rounded-xl p-5">
+    <div class="glass-card-no-animation rounded-xl p-5">
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Zonas</span>
         <div class="w-9 h-9 rounded-lg bg-accent-blue/10 flex items-center justify-center">
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Ordenadores -->
-    <div class="glass-card rounded-xl p-5">
+    <div class="glass-card-no-animation rounded-xl p-5">
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Ordenadores</span>
         <div class="w-9 h-9 rounded-lg bg-accent-violet/10 flex items-center justify-center">
@@ -56,7 +56,7 @@
     </div>
 
     <!-- Franjas horarias -->
-    <div class="glass-card rounded-xl p-5">
+    <div class="glass-card-no-animation rounded-xl p-5">
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Franjas horarias</span>
         <div class="w-9 h-9 rounded-lg bg-accent-emerald/10 flex items-center justify-center">
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Usuarios -->
-    <div class="glass-card rounded-xl p-5">
+    <div class="glass-card-no-animation rounded-xl p-5">
       <div class="flex items-center justify-between mb-3">
         <span class="text-sm font-medium text-text-secondary">Usuarios</span>
         <div class="w-9 h-9 rounded-lg bg-accent-amber/10 flex items-center justify-center">
@@ -88,7 +88,7 @@
     <h2 class="text-lg font-semibold text-text-primary mb-4">Accesos rápidos</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <a
-        routerLink="/admin/zones"
+        routerLink="/admin/zones/new"
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center">
@@ -97,7 +97,7 @@
         <span class="text-sm font-medium text-text-secondary">Nueva zona</span>
       </a>
       <a
-        routerLink="/admin/computers"
+        routerLink="/admin/computers/new"
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-violet/10 flex items-center justify-center">
@@ -106,7 +106,7 @@
         <span class="text-sm font-medium text-text-secondary">Nuevo ordenador</span>
       </a>
       <a
-        routerLink="/admin/timeslots"
+        routerLink="/admin/timeslots/new"
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-emerald/10 flex items-center justify-center">
@@ -115,7 +115,7 @@
         <span class="text-sm font-medium text-text-secondary">Nueva franja</span>
       </a>
       <a
-        routerLink="/admin/users"
+        routerLink="/admin/users/new"
         class="glass-card rounded-xl p-4 flex items-center gap-3 hover:bg-surface-700/60 transition-colors"
       >
         <div class="w-10 h-10 rounded-lg bg-accent-amber/10 flex items-center justify-center">

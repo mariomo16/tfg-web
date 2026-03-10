@@ -24,7 +24,7 @@ function mapComputer(computer: ComputerResponse): Computer {
 const status: Record<string, string> = {
 	available: "Disponible",
 	occupied: "Ocupado",
-	maintenance: "En mantenimiento",
+	maintenance: "Mantenimiento",
 };
 
 @Component({
