@@ -26,7 +26,7 @@ export class App implements OnInit {
 			// Limpiar el splash del dom despues de la transicion
 			setTimeout(() => {
 				splash?.remove();
-			}, 500);
+			}, 200);
 		}, 0);
 	}
 }
