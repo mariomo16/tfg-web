@@ -1,0 +1,93 @@
+<div class="p-8">
+  <div class="mb-6">
+    <a
+      routerLink="/admin/computers"
+      class="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-3"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <title>Volver a ordenadores</title>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
+      </svg>
+      Volver a ordenadores
+    </a>
+    <h1 class="text-2xl font-bold text-text-primary">Nuevo ordenador</h1>
+    <p class="mt-1 text-sm text-text-secondary">Añade un nuevo equipo al local</p>
+  </div>
+
+  <div class="glass-card rounded-xl p-6 max-w-lg">
+    <form class="space-y-5">
+      <div>
+        <label for="computer-name" class="block text-sm font-medium text-text-secondary mb-1.5"
+          >Nombre</label
+        >
+        <input
+          id="computer-name"
+          type="text"
+          placeholder="Ej: PC-G05"
+          class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="computer-zone" class="block text-sm font-medium text-text-secondary mb-1.5"
+          >Zona</label
+        >
+        <select
+          id="computer-zone"
+          class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+        >
+          <option value="" class="text-text-muted">Selecciona una zona</option>
+          <option value="1">Gaming</option>
+          <option value="2">Streaming</option>
+          <option value="3">Trabajo</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="computer-status" class="block text-sm font-medium text-text-secondary mb-1.5"
+          >Estado</label
+        >
+        <select
+          id="computer-status"
+          class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+        >
+          <option value="available">Disponible</option>
+          <option value="maintenance">Mantenimiento</option>
+          <option value="occupied">Ocupado</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="computer-specs" class="block text-sm font-medium text-text-secondary mb-1.5"
+          >Especificaciones</label
+        >
+        <textarea
+          id="computer-specs"
+          rows="3"
+          placeholder="Ej: RTX 4070, i7-14700K, 32GB RAM"
+          class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors resize-none"
+        ></textarea>
+      </div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <button
+          type="submit"
+          class="px-6 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
+        >
+          Guardar ordenador
+        </button>
+        <a
+          routerLink="/admin/computers"
+          class="px-6 py-2.5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+        >
+          Cancelar
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

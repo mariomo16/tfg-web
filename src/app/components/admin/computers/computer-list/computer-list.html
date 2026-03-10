@@ -1,0 +1,155 @@
+<div class="p-8">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-text-primary">Ordenadores</h1>
+      <p class="mt-1 text-sm text-text-secondary">Gestiona los equipos del local</p>
+    </div>
+    <a
+      routerLink="/admin/computers/new"
+      class="px-4 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
+    >
+      + Nuevo ordenador
+    </a>
+  </div>
+
+  <div class="glass-card rounded-xl overflow-hidden">
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-surface-600">
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            ID
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Nombre
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Zona
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Estado
+          </th>
+          <th
+            class="text-left px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Specs
+          </th>
+          <th
+            class="text-right px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-surface-700">
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">1</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">PC-G01</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">Gaming</td>
+          <td class="px-6 py-4">
+            <span
+              class="inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full bg-accent-emerald/10 text-accent-emerald"
+              >Disponible</span
+            >
+          </td>
+          <td class="px-6 py-4 text-sm text-text-secondary">RTX 4070, i7-14700K, 32GB</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/computers/1/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">2</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">PC-G02</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">Gaming</td>
+          <td class="px-6 py-4">
+            <span
+              class="inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full bg-accent-amber/10 text-accent-amber"
+              >Mantenimiento</span
+            >
+          </td>
+          <td class="px-6 py-4 text-sm text-text-secondary">RTX 4060, i5-13600K, 16GB</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/computers/2/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">3</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">PC-S01</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">Streaming</td>
+          <td class="px-6 py-4">
+            <span
+              class="inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full bg-accent-emerald/10 text-accent-emerald"
+              >Disponible</span
+            >
+          </td>
+          <td class="px-6 py-4 text-sm text-text-secondary">RTX 4080, i9-14900K, 64GB</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/computers/3/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+        <tr class="hover:bg-surface-700/30 transition-colors">
+          <td class="px-6 py-4 text-sm text-text-muted">4</td>
+          <td class="px-6 py-4 text-sm font-medium text-text-primary">PC-T01</td>
+          <td class="px-6 py-4 text-sm text-text-secondary">Trabajo</td>
+          <td class="px-6 py-4">
+            <span
+              class="inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full bg-accent-blue/10 text-accent-blue"
+              >Ocupado</span
+            >
+          </td>
+          <td class="px-6 py-4 text-sm text-text-secondary">i5-12400, 16GB, SSD 512GB</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              routerLink="/admin/computers/4/edit"
+              class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+              >Editar</a
+            >
+            <button
+              type="button"
+              class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
