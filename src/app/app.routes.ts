@@ -11,8 +11,9 @@ import { ZoneForm } from "./components/admin/zones/zone-form/zone-form";
 import { ZoneList } from "./components/admin/zones/zone-list/zone-list";
 import { Login } from "./components/auth/login/login";
 import { Register } from "./components/auth/register/register";
-import { Health } from "./components/health/health";
-import { Home } from "./components/home/home";
+import { NotFound } from "./components/errors/not-found/not-found";
+import { Health } from "./components/pages/health/health";
+import { Home } from "./components/pages/home/home";
 
 export const routes: Routes = [
 	{
@@ -94,5 +95,10 @@ export const routes: Routes = [
 				title: "Editar usuario",
 			},
 		],
+	},
+	{
+		path: "**",
+		component: NotFound,
+		title: "Página no encontrada",
 	},
 ];

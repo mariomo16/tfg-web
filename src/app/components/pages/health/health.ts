@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { RouterLink } from "@angular/router";
-import { HealthService } from "../../core/services/health.service";
+import { HealthService } from "../../../core/services/health.service";
 
 interface StatusConfig {
 	dot: string;
