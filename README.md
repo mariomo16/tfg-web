@@ -1,4 +1,4 @@
-# ByteZone - Trabajo de Final de Grado
+# ByteZone Web - Trabajo de Final de Grado
 
 [![Angular](https://img.shields.io/badge/Angular-v21-555555?labelColor=%23DD0031&logo=angular&logoColor=white)](https://angular.dev)
 [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](https://vercel.com)
