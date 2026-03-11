@@ -1,104 +1,163 @@
 import type { Routes } from "@angular/router";
-import { AdminLayout } from "./components/admin/admin-layout/admin-layout";
-import { ComputerForm } from "./components/admin/computers/computer-form/computer-form";
-import { ComputerList } from "./components/admin/computers/computer-list/computer-list";
-import { Dashboard } from "./components/admin/dashboard/dashboard";
-import { TimeslotForm } from "./components/admin/timeslots/timeslot-form/timeslot-form";
-import { TimeslotList } from "./components/admin/timeslots/timeslot-list/timeslot-list";
-import { UserForm } from "./components/admin/users/user-form/user-form";
-import { UserList } from "./components/admin/users/user-list/user-list";
-import { ZoneForm } from "./components/admin/zones/zone-form/zone-form";
-import { ZoneList } from "./components/admin/zones/zone-list/zone-list";
-import { Login } from "./components/auth/login/login";
-import { Register } from "./components/auth/register/register";
-import { NotFound } from "./components/errors/not-found/not-found";
-import { Health } from "./components/pages/health/health";
-import { Home } from "./components/pages/home/home";
+import { Home } from "./features/home/home";
 
 export const routes: Routes = [
 	{
 		path: "",
-		component: Home,
+		loadComponent: () =>
+			import("./features/home/home").then((module) => module.Home),
 		title: "Inicio",
 	},
 	{
-		path: "status",
-		component: Health,
-		title: "Estado del sistema",
+		path: "health",
+		loadComponent: () =>
+			import("./features/health/health").then((module) => module.Health),
+		title: "Estado de la API",
 	},
 	{
-		path: "login",
-		component: Login,
-		title: "Iniciar sesión",
-	},
-	{
-		path: "register",
-		component: Register,
-		title: "¡Registrate!",
+		path: "auth",
+		children: [
+			{
+				path: "",
+				redirectTo: "login",
+				pathMatch: "full",
+			},
+			{
+				path: "login",
+				loadComponent: () =>
+					import("./features/auth/login/login").then((module) => module.Login),
+				title: "Iniciar sesión",
+			},
+			{
+				path: "register",
+				loadComponent: () =>
+					import("./features/auth/register/register").then(
+						(module) => module.Register,
+					),
+				title: "¡Regístrate!",
+			},
+		],
 	},
 	{
 		path: "admin",
-		component: AdminLayout,
+		loadComponent: () =>
+			import("./features/admin/layout/admin-layout").then(
+				(module) => module.AdminLayout,
+			),
 		children: [
 			{ path: "", redirectTo: "dashboard", pathMatch: "full" },
 			{
 				path: "dashboard",
-				component: Dashboard,
+				loadComponent: () =>
+					import("./features/admin/dashboard/dashboard").then(
+						(module) => module.Dashboard,
+					),
 				title: "Panel de administración",
 			},
-			{ path: "zones", component: ZoneList, title: "Zonas" },
-			{ path: "zones/new", component: ZoneForm, title: "Nueva zona" },
+			{
+				path: "zones",
+				loadComponent: () =>
+					import("./features/admin/zones/zone-list/zone-list").then(
+						(module) => module.ZoneList,
+					),
+				title: "Zonas",
+			},
+			{
+				path: "zones/new",
+				loadComponent: () =>
+					import("./features/admin/zones/zone-form/zone-form").then(
+						(module) => module.ZoneForm,
+					),
+				title: "Nueva zona",
+			},
 			{
 				path: "zones/:id/edit",
-				component: ZoneForm,
+				loadComponent: () =>
+					import("./features/admin/zones/zone-form/zone-form").then(
+						(module) => module.ZoneForm,
+					),
 				title: "Editar zona",
 			},
 			{
 				path: "computers",
-				component: ComputerList,
+				loadComponent: () =>
+					import("./features/admin/computers/computer-list/computer-list").then(
+						(module) => module.ComputerList,
+					),
 				title: "Ordenadores",
 			},
 			{
 				path: "computers/new",
-				component: ComputerForm,
+				loadComponent: () =>
+					import("./features/admin/computers/computer-form/computer-form").then(
+						(module) => module.ComputerForm,
+					),
 				title: "Nuevo ordenador",
 			},
 			{
 				path: "computers/:id/edit",
-				component: ComputerForm,
+				loadComponent: () =>
+					import("./features/admin/computers/computer-form/computer-form").then(
+						(module) => module.ComputerForm,
+					),
 				title: "Editar ordenador",
 			},
 			{
 				path: "timeslots",
-				component: TimeslotList,
+				loadComponent: () =>
+					import("./features/admin/timeslots/timeslot-list/timeslot-list").then(
+						(module) => module.TimeslotList,
+					),
 				title: "Franjas horarias",
 			},
 			{
 				path: "timeslots/new",
-				component: TimeslotForm,
+				loadComponent: () =>
+					import("./features/admin/timeslots/timeslot-form/timeslot-form").then(
+						(module) => module.TimeslotForm,
+					),
 				title: "Nueva franja",
 			},
 			{
 				path: "timeslots/:id/edit",
-				component: TimeslotForm,
+				loadComponent: () =>
+					import("./features/admin/timeslots/timeslot-form/timeslot-form").then(
+						(module) => module.TimeslotForm,
+					),
 				title: "Editar franja",
 			},
-			{ path: "users", component: UserList, title: "Usuarios" },
+			{
+				path: "users",
+				loadComponent: () =>
+					import("./features/admin/users/user-list/user-list").then(
+						(module) => module.UserList,
+					),
+				title: "Usuarios",
+			},
 			{
 				path: "users/new",
-				component: UserForm,
+				loadComponent: () =>
+					import("./features/admin/users/user-form/user-form").then(
+						(module) => module.UserForm,
+					),
 				title: "Nuevo usuario",
 			},
 			{
 				path: "users/:id/edit",
-				component: UserForm,
+				loadComponent: () =>
+					import("./features/admin/users/user-form/user-form").then(
+						(module) => module.UserForm,
+					),
 				title: "Editar usuario",
 			},
 		],
 	},
 	{
 		path: "**",
-		component: NotFound,
+		loadComponent: () =>
+			import("./shared/ui/errors/not-found/not-found").then(
+				(module) => module.NotFound,
+			),
 		title: "Página no encontrada",
 	},
 ];

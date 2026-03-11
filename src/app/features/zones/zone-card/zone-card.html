@@ -1,0 +1,40 @@
+<div class="glass-card rounded-2xl overflow-hidden group">
+  @let currentZone = zone();
+
+  <div class="h-1" [style.background-color]="currentZone.accent"></div>
+
+  <div class="p-8">
+    <div class="flex items-center gap-4 mb-6">
+      <span
+        class="text-4xl w-14 h-14 flex items-center justify-center rounded-xl bg-surface-800"
+        [innerHTML]="currentZone.icon | safeHtml"
+        [style.color]="currentZone.accent"
+      >
+      </span>
+      <div>
+        <h3 class="text-xl font-semibold text-text-primary">
+          {{ currentZone.name }}
+        </h3>
+        <p class="text-sm text-text-muted">
+          {{ currentZone.availableComputers }} de {{ currentZone.totalComputers }}
+          equipos libres
+        </p>
+      </div>
+    </div>
+
+    <div class="flex items-baseline gap-1 mb-6">
+      <span class="text-4xl font-bold text-text-primary">
+        {{ currentZone.pricePerSlot | currency: 'EUR' : 'symbol' : '1.2-2' }}
+      </span>
+      <span class="text-text-muted">/hora</span>
+    </div>
+
+    <button
+      type="button"
+      routerLink="/zones/{{ currentZone.id }}"
+      class="w-full py-3 text-sm font-semibold text-text-primary bg-surface-700 rounded-xl hover:bg-surface-600 transition-colors cursor-pointer"
+    >
+      Ver equipos disponibles
+    </button>
+  </div>
+</div>

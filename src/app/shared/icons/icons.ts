@@ -52,15 +52,11 @@ const Paths = {
     />`,
 };
 
-// ─── Iconos base (sin color, reutilizables) ───────────────────────────────────
-
 export const Icons = {
-	// Filled
 	cpuChip: svg(Paths.cpuChip),
 	trophy: svg(Paths.trophy),
 	sparkles: svg(Paths.sparkles),
 
-	// Outline
 	dashboard: svgOutline(Paths.dashboard),
 	zones: svgOutline(Paths.zones),
 	computers: svgOutline(Paths.computers),
@@ -71,8 +67,6 @@ export const Icons = {
 	settings: svgOutline(Paths.settings),
 };
 
-// ─── Grupos por contexto ──────────────────────────────────────────────────────
-
 export const DashboardIcons = {
 	dashboard: Icons.dashboard,
 	zones: Icons.zones,
@@ -81,12 +75,6 @@ export const DashboardIcons = {
 	users: Icons.users,
 	back: Icons.arrowBack,
 	plus: Icons.plus,
-};
-
-export const ZoneIcons: Record<string, string> = {
-	"Zona Gaming": Icons.cpuChip,
-	"Zona Torneo": Icons.trophy,
-	"Zona VIP": Icons.sparkles,
 };
 
 export const SocialIcons = {
@@ -104,7 +92,7 @@ export const SocialIcons = {
 	</svg>`,
 };
 
-export const PacmanLoadingIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 0 500 300" width="150" height="90" class="text-accent-violet">
+const PacmanLoadingIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 0 500 300" width="150" height="90" class="text-accent-violet">
 	<style>
 		.p-dot,.p-open,.p-top,.p-bot{fill:currentColor}
 		.p-top,.p-bot{animation:175ms linear alternate infinite;transform-origin:150px 150px}
@@ -125,8 +113,13 @@ export const PacmanLoadingIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBo
 	<path class="p-open" d="M150,150L236.6,100A100 100 0 1 0 236.6,200Z"/>
 </svg>`;
 
-export const LoadingIcon = `<svg width="50" height="50" viewBox="0 0 50 50">
+const LoadingIcon = `<svg width="50" height="50" viewBox="0 0 50 50">
   <circle cx="25" cy="25" r="20" fill="none" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" stroke-dasharray="60 120">
     <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="1s" repeatCount="indefinite" />
   </circle>
 </svg>`;
+
+export const LoadingIcons = {
+	pacman: PacmanLoadingIcon,
+	spinner: LoadingIcon,
+};

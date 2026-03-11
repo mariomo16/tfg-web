@@ -1,0 +1,92 @@
+<div class="p-8">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-text-primary">Ordenadores</h1>
+      <p class="mt-1 text-sm text-text-secondary">Gestiona los equipos del local</p>
+    </div>
+    <a
+      routerLink="/admin/computers/new"
+      class="px-4 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
+    >
+      + Nuevo ordenador
+    </a>
+  </div>
+
+  <div class="glass-card-no-animation rounded-xl overflow-hidden">
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-surface-600">
+          @for (column of columns; track $index) {
+            <th class="text-left px-6 py-3 text-xs font-semibold text-text-muted tracking-wider">
+              {{ column.label }}
+            </th>
+          }
+          <th
+            class="text-right px-6 py-3 text-xs font-semibold text-text-muted uppercase tracking-wider"
+          >
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-surface-700">
+        @if (computersResource.isLoading()) {
+          <tr>
+            <td colspan="6" class="px-6 py-[43px]">
+              <div class="flex justify-center">
+                <span [innerHTML]="loadingIcon | safeHtml"></span>
+              </div>
+            </td>
+          </tr>
+        } @else if (computersResource.error()) {
+          <tr>
+            <td colspan="6" class="px-6 py-8">
+              <div class="flex flex-col items-center gap-3">
+                <p class="text-base text-red-400">Error al cargar los ordenadores.</p>
+                <button
+                  type="button"
+                  class="px-4 py-2 text-sm font-semibold text-surface-900 bg-accent-blue rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                  (click)="computersResource.reload()"
+                >
+                  Reintentar
+                </button>
+              </div>
+            </td>
+          </tr>
+        } @else {
+          @let computers = computersResource.value();
+          @for (computer of computers; track computer.id) {
+            <tr class="hover:bg-surface-700/30 transition-colors">
+              <td class="px-6 py-4 text-sm text-text-muted">{{ computer.id }}</td>
+              <td class="px-6 py-4 text-sm font-medium text-text-primary">{{ computer.name }}</td>
+              <td class="px-6 py-4 text-sm text-text-secondary">
+                {{ computer.zone?.name ?? 'Zona eliminada' }}
+              </td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full"
+                  [class]="computer.statusAccent"
+                  >{{ computer.status }}</span
+                >
+              </td>
+              <td class="px-6 py-4 text-sm text-text-secondary">{{ computer.specs }}</td>
+              <td class="px-6 py-4 text-right">
+                <a
+                  [routerLink]="['/admin/computers', computer.id, 'edit']"
+                  class="text-sm text-accent-blue hover:text-accent-violet transition-colors mr-3"
+                  >Editar</a
+                >
+                <button
+                  (click)="onDelete(computer.id)"
+                  type="button"
+                  class="text-sm text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
