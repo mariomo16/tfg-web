@@ -31,7 +31,7 @@
 
     <button
       type="button"
-      routerLink="/zones/{{ currentZone.id }}"
+      [routerLink]="['/zones', currentZone.id]"
       class="w-full py-3 text-sm font-semibold text-text-primary bg-surface-700 rounded-xl hover:bg-surface-600 transition-colors cursor-pointer"
     >
       Ver equipos disponibles
