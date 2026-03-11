@@ -59,7 +59,7 @@
       </p>
     </div>
 
-    <div class="min-h-[420px] flex items-center justify-center">
+    <div class="min-h-[420px] flex items-center justify-center w-full">
       @if (zonesResource.isLoading()) {
         <span [innerHTML]="loadingIcon | safeHtml"></span>
       } @else if (zonesResource.error()) {
