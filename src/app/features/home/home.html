@@ -1,0 +1,90 @@
+<app-navbar />
+
+<!-- ==================== HERO ==================== -->
+<section
+  class="relative min-h-screen flex items-center justify-center bg-surface-900 overflow-hidden"
+>
+  <div
+    class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/10 rounded-full blur-3xl animate-zoom-in"
+  ></div>
+  <div
+    class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-violet/10 rounded-full blur-3xl animate-zoom-in"
+  ></div>
+
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-text-primary leading-tight">
+      Reserva tu equipo<br />
+      <span class="text-gradient">en segundos</span>
+    </h1>
+
+    <p class="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+      Gestiona tus reservas de forma rápida y sencilla. <br />
+      Elige zona, equipo y horario desde cualquier dispositivo.
+    </p>
+
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="#zones"
+        class="px-8 py-3.5 text-base font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent-blue/25"
+      >
+        Explorar equipos
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <title>Desplázate hacia abajo</title>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+      />
+    </svg>
+  </div>
+</section>
+
+<!-- ==================== ZONAS ==================== -->
+<section id="zones" class="bg-surface-900 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-sm font-medium text-accent-violet tracking-widest uppercase mb-3">
+        Disponibilidad
+      </p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-text-primary">Nuestras zonas</h2>
+      <p class="mt-4 text-text-secondary max-w-xl mx-auto">
+        Cada zona está diseñada para una experiencia diferente. <br />
+        Encuentra la que mejor se adapte a ti.
+      </p>
+    </div>
+
+    <div class="min-h-[420px] flex items-center justify-center">
+      @let zones = zonesResource.value();
+
+      @if (zonesResource.isLoading()) {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
+      } @else if (zonesResource.error()) {
+        <div class="flex flex-col items-center gap-3 text-center">
+          <p class="text-text-primary font-semibold">No se pudieron cargar las zonas</p>
+          <p class="text-sm text-text-muted">Comprueba tu conexión e inténtalo de nuevo.</p>
+          <button
+            type="button"
+            class="mt-2 px-5 py-2 text-sm font-semibold text-surface-900 bg-accent-blue rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+            (click)="zonesResource.reload()"
+          >
+            Reintentar
+          </button>
+        </div>
+      } @else if (zones) {
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full animate-fade-in-up">
+          @for (zone of zones; track zone.id) {
+            <app-zone-card [zone]="zone" />
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-footer />

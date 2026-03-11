@@ -83,12 +83,6 @@ export const DashboardIcons = {
 	plus: Icons.plus,
 };
 
-export const ZoneIcons: Record<string, string> = {
-	"Zona Gaming": Icons.cpuChip,
-	"Zona Torneo": Icons.trophy,
-	"Zona VIP": Icons.sparkles,
-};
-
 export const SocialIcons = {
 	github: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 		<title>GitHub</title>
