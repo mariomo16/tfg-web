@@ -8,7 +8,7 @@ export interface ComputerResponse {
 	name: string;
 	specs: string;
 	status: ComputerStatus;
-	zone: Zone;
+	zone: Zone | null;
 	zone_id: number;
 	reservations: unknown[];
 }

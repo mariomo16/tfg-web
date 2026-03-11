@@ -60,14 +60,17 @@
     </div>
 
     <div class="min-h-[420px] flex items-center justify-center">
-      @let zones = zonesResource.value();
-
       @if (zonesResource.isLoading()) {
         <span [innerHTML]="loadingIcon | safeHtml"></span>
       } @else if (zonesResource.error()) {
         <div class="flex flex-col items-center gap-3 text-center">
-          <p class="text-text-primary font-semibold">No se pudieron cargar las zonas</p>
-          <p class="text-sm text-text-muted">Comprueba tu conexión e inténtalo de nuevo.</p>
+          <p class="text-text-primary font-semibold">Error al cargar las zonas</p>
+          <p class="text-sm text-text-muted">
+            Comprueba el
+            <a routerLink="/health" class="text-blue-400 cursor-pointer hover:underline"
+              >estado de la API</a
+            >.
+          </p>
           <button
             type="button"
             class="mt-2 px-5 py-2 text-sm font-semibold text-surface-900 bg-accent-blue rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
@@ -76,7 +79,8 @@
             Reintentar
           </button>
         </div>
-      } @else if (zones) {
+      } @else {
+        @let zones = zonesResource.value();
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full animate-fade-in-up">
           @for (zone of zones; track zone.id) {
             <app-zone-card [zone]="zone" />

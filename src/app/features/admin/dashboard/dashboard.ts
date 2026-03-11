@@ -1,50 +1,62 @@
-import { Component, computed, inject } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	computed,
+	inject,
+	resource,
+} from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { ComputerService } from "../../../core/services/computer.service";
-import { DashboardIcons, LoadingIcon } from "../../../shared/icons/icons";
+import { firstValueFrom } from "rxjs";
+import { DashboardIcons, LoadingIcons } from "../../../shared/icons/icons";
 import { SafeHtmlPipe } from "../../../shared/pipes/safe-html.pipe";
+import { COMPUTER_STATUS_LABELS } from "../../computers/computer.constants";
+import { ComputerService } from "../../computers/computer.service";
 import { ZoneService } from "../../zones/zone.service";
 
 @Component({
 	selector: "app-dashboard",
 	imports: [RouterLink, SafeHtmlPipe],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: "./dashboard.html",
 })
 export class Dashboard {
-	private readonly zoneService = inject(ZoneService);
-	private readonly computerService = inject(ComputerService);
+	readonly #zoneService = inject(ZoneService);
+	readonly #computerService = inject(ComputerService);
 
-	protected readonly zoneResponse = toSignal(this.zoneService.getAll());
-	protected readonly computersResponse = toSignal(
-		this.computerService.getAll(),
+  protected readonly dashboardIcons = DashboardIcons;
+	protected readonly loadingIcon = LoadingIcons.spinner;
+
+	protected readonly zonesResource = resource({
+		loader: () => firstValueFrom(this.#zoneService.getAll()),
+	});
+
+	protected readonly computersResource = resource({
+		loader: () => firstValueFrom(this.#computerService.getAll()),
+	});
+
+	protected readonly totalZones = computed(
+		() => this.zonesResource.value()?.length ?? 0,
 	);
 
-	protected readonly totalZones = computed(() => this.zoneResponse()?.length);
 	protected readonly totalComputers = computed(
-		() => this.computersResponse()?.length,
+		() => this.computersResource.value()?.length ?? 0,
 	);
 
 	protected readonly availableComputers = computed(
 		() =>
-			this.computersResponse()?.filter(
-				(computer) => computer.status === "available",
-			).length,
+			this.computersResource
+				.value()
+				?.filter(
+					(computer) => computer.status === COMPUTER_STATUS_LABELS.available,
+				).length ?? 0,
 	);
+
 	protected readonly inMaintenanceComputers = computed(
 		() =>
-			this.computersResponse()?.filter(
-				(computer) => computer.status === "maintenance",
-			).length,
+			this.computersResource
+				.value()
+				?.filter(
+					(computer) => computer.status === COMPUTER_STATUS_LABELS.maintenance,
+				).length ?? 0,
 	);
-
-	protected readonly dashboardIcons = {
-		zones: DashboardIcons.zones,
-		computers: DashboardIcons.computers,
-		timeslots: DashboardIcons.timeslots,
-		users: DashboardIcons.users,
-		plus: DashboardIcons.plus,
-	};
-
-	protected readonly loadingIcon = LoadingIcon;
 }

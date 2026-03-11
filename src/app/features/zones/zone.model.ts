@@ -1,4 +1,4 @@
-import type { ComputerResponse } from "../../core/models/computer.model";
+import type { ComputerResponse } from "../computers/computer.model";
 
 export type ZoneName = "Zona Gaming" | "Zona Torneo" | "Zona VIP";
 

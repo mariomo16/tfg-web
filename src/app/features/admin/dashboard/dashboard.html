@@ -15,18 +15,20 @@
           <span [innerHTML]="dashboardIcons.zones | safeHtml" class="text-accent-blue"></span>
         </div>
       </div>
-      @if (zoneResponse()) {
+      @if (zonesResource.isLoading()) {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
+      } @else if (zonesResource.error()) {
+        <p class="text-sm font-medium text-red-400">Error al cargar</p>
+      } @else {
         <p class="text-3xl font-bold text-text-primary">{{ totalZones() }}</p>
         <p class="text-xs text-text-muted mt-1">
-          @for (zone of zoneResponse(); track zone.id) {
+          @for (zone of zonesResource.value(); track zone.id) {
             {{ zone.name }}
             @if (!$last) {
               ·
             }
           }
         </p>
-      } @else {
-        <span [innerHTML]="loadingIcon | safeHtml"></span>
       }
     </div>
 
@@ -38,7 +40,11 @@
           <span [innerHTML]="dashboardIcons.computers | safeHtml" class="text-accent-violet"></span>
         </div>
       </div>
-      @if (totalComputers()) {
+      @if (computersResource.isLoading()) {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
+      } @else if (computersResource.error()) {
+        <p class="text-sm font-medium text-red-400">Error al cargar</p>
+      } @else {
         <p class="text-3xl font-bold text-text-primary">{{ totalComputers() }}</p>
         <div class="flex items-center gap-2 mt-1">
           <span class="inline-flex items-center gap-1 text-xs text-accent-emerald">
@@ -50,8 +56,6 @@
             {{ inMaintenanceComputers() }} mantenimiento
           </span>
         </div>
-      } @else {
-        <span [innerHTML]="loadingIcon | safeHtml"></span>
       }
     </div>
 
