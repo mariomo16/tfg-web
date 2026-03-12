@@ -1,5 +1,6 @@
-import { Component, type OnInit, signal } from "@angular/core";
+import { Component, inject, type OnInit, signal } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
+import { SvgSpriteService } from "./core/svg.sprite.service";
 
 @Component({
 	selector: "app-root",
@@ -8,7 +9,7 @@ import { RouterOutlet } from "@angular/router";
 	styleUrl: "./app.css",
 })
 export class App implements OnInit {
-	protected readonly title = signal("tfg-web");
+  readonly #sprite = inject(SvgSpriteService);
 
 	ngOnInit() {
 		// Para que eliminar el FOUC en producción (a la cuarta va la vencida)
@@ -17,5 +18,7 @@ export class App implements OnInit {
 
 		html.classList.remove("is-loading");
 		splash?.remove();
+
+    this.#sprite.load();
 	}
 }
