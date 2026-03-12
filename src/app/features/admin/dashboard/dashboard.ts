@@ -11,6 +11,7 @@ import { DashboardIcons, LoadingIcons } from "../../../shared/icons/icons";
 import { SafeHtmlPipe } from "../../../shared/pipes/safe-html.pipe";
 import { COMPUTER_STATUS_LABELS } from "../../computers/computer.constants";
 import { ComputerService } from "../../computers/computer.service";
+import { TimeSlotService } from "../../time-slots/timeslot.service";
 import { ZoneService } from "../../zones/zone.service";
 
 @Component({
@@ -22,8 +23,9 @@ import { ZoneService } from "../../zones/zone.service";
 export class Dashboard {
 	readonly #zoneService = inject(ZoneService);
 	readonly #computerService = inject(ComputerService);
+	readonly #timeslotService = inject(TimeSlotService);
 
-  protected readonly dashboardIcons = DashboardIcons;
+	protected readonly dashboardIcons = DashboardIcons;
 	protected readonly loadingIcon = LoadingIcons.spinner;
 
 	protected readonly zonesResource = resource({
@@ -32,6 +34,10 @@ export class Dashboard {
 
 	protected readonly computersResource = resource({
 		loader: () => firstValueFrom(this.#computerService.getAll()),
+	});
+
+	protected readonly timeslotsResource = resource({
+		loader: () => firstValueFrom(this.#timeslotService.getAll()),
 	});
 
 	protected readonly totalZones = computed(
@@ -59,4 +65,26 @@ export class Dashboard {
 					(computer) => computer.status === COMPUTER_STATUS_LABELS.maintenance,
 				).length ?? 0,
 	);
+
+	protected readonly totalTimeSlots = computed(
+		() => this.timeslotsResource.value()?.length ?? 0,
+	);
+
+	protected readonly earliestTimeSlot = computed(() => {
+		const timeslots = this.timeslotsResource.value();
+		if (!timeslots?.length) return null;
+
+		return timeslots.reduce((earliest, current) =>
+			current.startTime < earliest.startTime ? current : earliest,
+		);
+	});
+
+	protected readonly latestTimeSlot = computed(() => {
+		const timeslots = this.timeslotsResource.value();
+		if (!timeslots?.length) return null;
+
+		return timeslots.reduce((latest, current) =>
+			current.endTime > latest.endTime ? current : latest,
+		);
+	});
 }

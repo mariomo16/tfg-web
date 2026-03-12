@@ -4,62 +4,71 @@
       routerLink="/admin/timeslots"
       class="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-3"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <title>Volver a franjas</title>
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M10 19l-7-7m0 0l7-7m-7 7h18"
-        />
-      </svg>
+      <span [innerHTML]="icons.arrowBack | safeHtml"></span>
       Volver a franjas
     </a>
-    <h1 class="text-2xl font-bold text-text-primary">Nueva franja horaria</h1>
-    <p class="mt-1 text-sm text-text-secondary">Define un nuevo horario disponible</p>
+    <h1 class="text-2xl font-bold text-text-primary">
+      {{ isEditing() ? 'Editar franja horaria' : 'Nueva franja horaria' }}
+    </h1>
+    <p class="mt-1 text-sm text-text-secondary">
+      {{ isEditing() ? 'Modifica el horario' : 'Define un nuevo horario disponible' }}
+    </p>
   </div>
 
   <div class="glass-card-no-animation rounded-xl p-6 max-w-lg">
-    <form class="space-y-5">
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label for="timeslot-start" class="block text-sm font-medium text-text-secondary mb-1.5"
-            >Hora inicio</label
-          >
-          <input
-            id="timeslot-start"
-            type="time"
-            value="09:00"
-            class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
-          />
-        </div>
-        <div>
-          <label for="timeslot-end" class="block text-sm font-medium text-text-secondary mb-1.5"
-            >Hora fin</label
-          >
-          <input
-            id="timeslot-end"
-            type="time"
-            value="11:00"
-            class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
-          />
-        </div>
+    @if (timeslotResource.isLoading()) {
+      <div class="flex justify-center py-12">
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
       </div>
+    } @else {
+      <form class="space-y-5" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label
+              for="timeslot-start"
+              class="block text-sm font-medium text-text-secondary mb-1.5"
+            >
+              Hora inicio
+            </label>
+            <input
+              id="timeslot-start"
+              name="timeslot-start"
+              type="time"
+              class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+              [ngModel]="startTime()"
+              (ngModelChange)="startTime.set($event)"
+            />
+          </div>
+          <div>
+            <label for="timeslot-end" class="block text-sm font-medium text-text-secondary mb-1.5">
+              Hora fin
+            </label>
+            <input
+              id="timeslot-end"
+              name="timeslot-end"
+              type="time"
+              class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+              [ngModel]="endTime()"
+              (ngModelChange)="endTime.set($event)"
+            />
+          </div>
+        </div>
 
-      <div class="flex items-center gap-3 pt-2">
-        <button
-          type="submit"
-          class="px-6 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
-        >
-          Guardar franja
-        </button>
-        <a
-          routerLink="/admin/timeslots"
-          class="px-6 py-2.5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
-        >
-          Cancelar
-        </a>
-      </div>
-    </form>
+        <div class="flex items-center gap-3 pt-2">
+          <button
+            type="submit"
+            class="px-6 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
+          >
+            {{ isEditing() ? 'Guardar cambios' : 'Crear franja' }}
+          </button>
+          <a
+            routerLink="/admin/timeslots"
+            class="px-6 py-2.5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+          >
+            Cancelar
+          </a>
+        </div>
+      </form>
+    }
   </div>
 </div>

@@ -70,8 +70,17 @@
           ></span>
         </div>
       </div>
-      <p class="text-3xl font-bold text-text-primary">6</p>
-      <p class="text-xs text-text-muted mt-1">De 09:00 a 21:00</p>
+      @if (timeslotsResource.isLoading()) {
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
+      } @else if (timeslotsResource.error()) {
+        <p class="text-sm font-medium text-red-400">Error al cargar</p>
+      } @else {
+        <p class="text-3xl font-bold text-text-primary">{{ totalTimeSlots() }}</p>
+        <p class="text-xs text-text-muted mt-1">
+          De {{ earliestTimeSlot()?.startTime }} a
+          {{ latestTimeSlot()?.endTime }}
+        </p>
+      }
     </div>
 
     <!-- Usuarios -->
