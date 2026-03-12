@@ -59,6 +59,8 @@ export class ComputerService {
 			name: response.name,
 			specs: response.specs,
 			zone: response.zone,
+			zone_id: response.zone_id,
+      statusRaw: response.status,
 			status: COMPUTER_STATUS_LABELS[response.status],
 			statusAccent: COMPUTER_STATUS_ACCENTS[response.status],
 		};

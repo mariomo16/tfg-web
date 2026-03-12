@@ -4,62 +4,70 @@
       routerLink="/admin/zones"
       class="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-3"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <title>Volver a zonas</title>
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M10 19l-7-7m0 0l7-7m-7 7h18"
-        />
-      </svg>
+      <span [innerHTML]="icons.arrowBack | safeHtml"></span>
       Volver a zonas
     </a>
-    <h1 class="text-2xl font-bold text-text-primary">Nueva zona</h1>
-    <p class="mt-1 text-sm text-text-secondary">Crea una nueva zona para el local</p>
+    <h1 class="text-2xl font-bold text-text-primary">
+      {{ isEditing() ? 'Editar zona' : 'Nueva zona' }}
+    </h1>
+    <p class="mt-1 text-sm text-text-secondary">
+      {{ isEditing() ? 'Modifica los datos de la zona' : 'Crea una nueva zona para el local' }}
+    </p>
   </div>
 
   <div class="glass-card-no-animation rounded-xl p-6 max-w-lg">
-    <form class="space-y-5">
-      <div>
-        <label for="zone-name" class="block text-sm font-medium text-text-secondary mb-1.5"
-          >Nombre</label
-        >
-        <input
-          id="zone-name"
-          type="text"
-          placeholder="Ej: Gaming Pro"
-          class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
-        />
+    @if (zoneResource.isLoading()) {
+      <div class="flex justify-center py-12">
+        <span [innerHTML]="loadingIcon | safeHtml"></span>
       </div>
+    } @else {
+      <form class="space-y-5" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="zone-name" class="block text-sm font-medium text-text-secondary mb-1.5">
+            Nombre
+          </label>
+          <input
+            id="zone-name"
+            type="text"
+            placeholder="Ej: Zona Gaming"
+            class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+            [ngModel]="name()"
+            (ngModelChange)="name.set($event)"
+            name="zone-name"
+          />
+        </div>
 
-      <div>
-        <label for="zone-price" class="block text-sm font-medium text-text-secondary mb-1.5"
-          >Precio por franja (€)</label
-        >
-        <input
-          id="zone-price"
-          type="number"
-          step="0.01"
-          placeholder="3.50"
-          class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
-        />
-      </div>
+        <div>
+          <label for="zone-price" class="block text-sm font-medium text-text-secondary mb-1.5">
+            Precio por franja (€)
+          </label>
+          <input
+            id="zone-price"
+            type="number"
+            step="0.01"
+            placeholder="3.50"
+            class="w-full px-4 py-2.5 bg-surface-800 border border-surface-600 rounded-xl text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors"
+            [ngModel]="pricePerSlot()"
+            (ngModelChange)="pricePerSlot.set($event)"
+            name="zone-price"
+          />
+        </div>
 
-      <div class="flex items-center gap-3 pt-2">
-        <button
-          type="submit"
-          class="px-6 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
-        >
-          Guardar zona
-        </button>
-        <a
-          routerLink="/admin/zones"
-          class="px-6 py-2.5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
-        >
-          Cancelar
-        </a>
-      </div>
-    </form>
+        <div class="flex items-center gap-3 pt-2">
+          <button
+            type="submit"
+            class="px-6 py-2.5 text-sm font-semibold text-surface-900 bg-linear-to-r from-accent-blue to-accent-violet rounded-xl hover:opacity-90 transition-all cursor-pointer"
+          >
+            {{ isEditing() ? 'Guardar cambios' : 'Crear zona' }}
+          </button>
+          <a
+            routerLink="/admin/zones"
+            class="px-6 py-2.5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+          >
+            Cancelar
+          </a>
+        </div>
+      </form>
+    }
   </div>
 </div>

@@ -6,7 +6,7 @@ export const COMPUTER_STATUS_LABELS: Record<
 > = {
 	available: "Disponible",
 	occupied: "Ocupado",
-	maintenance: "En mantenimiento",
+	maintenance: "Mantenimiento",
 };
 
 export const COMPUTER_STATUS_ACCENTS: Record<ComputerStatus, string> = {

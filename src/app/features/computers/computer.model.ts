@@ -1,7 +1,7 @@
-import type { Zone } from "../../features/zones/zone.model";
+import type { Zone } from "../zones/zone.model";
 
 export type ComputerStatus = "available" | "maintenance" | "occupied";
-export type ComputerStatusLabel = "Disponible" | "En mantenimiento" | "Ocupado";
+export type ComputerStatusLabel = "Disponible" | "Mantenimiento" | "Ocupado";
 
 export interface ComputerResponse {
 	id: number;
@@ -10,24 +10,21 @@ export interface ComputerResponse {
 	status: ComputerStatus;
 	zone: Zone | null;
 	zone_id: number;
-	reservations: unknown[];
+	reservations: unknown[]; // TODO reservations interface
 }
 
 export interface Computer
-	extends Omit<ComputerResponse, "status" | "reservations" | "zone_id"> {
+	extends Omit<ComputerResponse, "status" | "reservations"> {
 	status: ComputerStatusLabel;
+  statusRaw: ComputerStatus;
 	statusAccent: string;
 }
 
 export interface CreateComputerDto {
 	name: string;
 	zone_id: number;
+	status: string;
 	specs: string;
 }
 
-export interface UpdateComputerDto {
-	name?: string;
-	zone_id?: number;
-	status?: ComputerStatus;
-	specs?: string;
-}
+export type UpdateComputerDto = CreateComputerDto;
